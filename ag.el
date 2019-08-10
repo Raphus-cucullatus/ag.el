@@ -259,7 +259,7 @@ If REGEXP is non-nil, treat STRING as a regular expression."
         ;; Make a space in the command-string for the user to enter more arguments.
         (setq command-string (ag/replace-first command-string " -- " "  -- "))
         ;; Prompt for the command.
-        (let ((adjusted-point (- (length command-string) (length string) 5)))
+        (let ((adjusted-point (+ 1 (string-match " -- " command-string))))
           (setq command-string
                 (read-from-minibuffer "ag command: "
                                       (cons command-string adjusted-point)))))
